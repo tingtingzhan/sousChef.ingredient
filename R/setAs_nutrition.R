@@ -45,3 +45,47 @@ setAs(from = 'ingredient', to = 'nutrition', def = \(from) {
 
 
 
+
+
+
+
+#' @importFrom stats setNames
+setAs(from = 'nutrition', to = 'ingredient', def = \(from) {
+  
+  x <- from; from <- NULL
+  
+  if (identical(x@call, quote(`<UNDEFINED>`))) {
+    # created by one of setAs()
+    return(invisible())
+  }
+  
+  z <- if (length(x@pieceGram)) {
+    1 |>
+      setNames(nm = as.character(x@call)) |>
+      ingredient(misc_pc = _)
+  } else {
+    x@servingGram |>
+      setNames(nm = as.character(x@call)) |> 
+      ingredient(misc = _)
+  }
+  
+  if (!length(x@suggest)) {
+    #return(z) # no bug now :)
+    return(invisible())
+  }
+  
+  z <- z + 
+    x@suggest
+  # setMethod(f = '+', signature = c(e1 = 'ingredient', e2 = 'list'))
+  
+  # \linkS4class{ingredient} does not have slot `@name`
+  attr(z, which = 'name') <- x |>
+    labels() |> # sousChef.nutrition:::labels.nutrition
+    sprintf(fmt = '\U1f381 %s')
+  
+  return(z)
+  
+})
+
+
+
