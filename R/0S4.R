@@ -34,33 +34,11 @@ setClass(
 
 ingredient <- \(...) {
   list(...) |>
-    .cleanSlots_ingredient() |>
+    .clean_ingredient() |>
     c(list(Class = 'ingredient')) |> 
     do.call(what = 'new', args = _)
 }
 
-
-
-
-
-.cleanSlots_ingredient <- \(x) {
-  
-  x <- x |>
-    mergePc() |> 
-    mergeVol() |>
-    mergeVol_H2O()
-    
-  for (i in slotNames(x = 'ingredient')) {
-    if (length(x[[i]])) {
-      x[[i]] <- x[[i]] |>
-        zero.omit() |>
-        sort.default(decreasing = TRUE)
-    }
-  }
-  
-  return(x)
-  
-}
 
 
 

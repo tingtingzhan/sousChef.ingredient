@@ -328,19 +328,6 @@ exists_ <- \(x, ...) {
 
 
 
-eval_ <- \(x, ...) {
-  if (identical(x, make.names(x))) {
-    x |>
-      call(name = _) |>
-      eval(...)
-  } else {
-    x |>
-      str2lang() |>
-      eval(...)
-  }
-}
-
-
 
 
 
