@@ -8,12 +8,6 @@ setMethod(f = show, signature = 'ingredient', definition = \(object) print.ingre
 
 
 
-#' @title [print.ingredient()]
-#' 
-#' @param x,... ..
-#' 
-#' @method print ingredient
-#' @export print.ingredient
 #' @export
 print.ingredient <- \(x, ...) {
   
