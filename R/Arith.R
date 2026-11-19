@@ -42,7 +42,17 @@ setMethod(f = '/', signature = signature(e1 = 'ingredient', e2 = 'numeric'), def
 })
 
 
-
+#' @rdname Arith
+#' @aliases -,ingredient,missing-method
+#' @export
+setMethod(f = '-', signature = signature(e1 = 'ingredient', e2 = 'missing'), definition = \(e1, e2) {
+  e1 <- e1 |> 
+    as(Class = 'ingredient', strict = TRUE)
+  for (i in slotNames('ingredient')) {
+    slot(e1, name = i) <- - slot(e1, name = i)
+  }
+  return(e1)
+})
 
 
 #' @rdname Arith
@@ -72,10 +82,13 @@ setMethod(f = '+', signature = signature(e1 = 'ingredient', e2 = 'ingredient'), 
 })
 
 
+
+
 #' @rdname Arith
 #' @aliases -,ingredient,ingredient-method
 #' @export
-setMethod(f = '-', signature = signature(e1 = 'ingredient', e2 = 'ingredient'), definition = \(e1, e2) e1 + (-1) * e2)
+setMethod(f = '-', signature = signature(e1 = 'ingredient', e2 = 'ingredient'), definition = \(e1, e2) e1 + (-e2))
+
 
 
 
@@ -86,6 +99,10 @@ setMethod(f = '-', signature = signature(e1 = 'ingredient', e2 = 'ingredient'), 
 #' @aliases -,ingredient,character-method
 #' @export
 setMethod(f = '-', signature = c(e1 = 'ingredient', e2 = 'character'), definition = \(e1, e2) {
+  
+  e1 <- e1 |> 
+    as(Class = 'ingredient', strict = TRUE)
+  # no longer a \linkS4class{recipe}!!
   
   if (e2 %in% slotNames('ingredient')) {
     slot(e1, name = e2) <- numeric()
@@ -131,6 +148,10 @@ setMethod(f = '-', signature = c(e1 = 'ingredient', e2 = 'nutrition'), definitio
 #' @export
 setMethod(f = '+', signature = c(e1 = 'ingredient', e2 = 'list'), definition = \(e1, e2) {
   
+  e1 <- e1 |> 
+    as(Class = 'ingredient', strict = TRUE)
+  # no longer a \linkS4class{recipe}!!
+  
   atr <- attributes(e1)
   atr$class <- NULL
   
@@ -142,7 +163,7 @@ setMethod(f = '+', signature = c(e1 = 'ingredient', e2 = 'list'), definition = \
         atr$call
       )
     )
-    # for [recipe()] or [ingredient()] !!
+    # for [ingredient()] !!
   }
   
   atr <- atr[lengths(atr) > 0L]
@@ -157,13 +178,13 @@ setMethod(f = '+', signature = c(e1 = 'ingredient', e2 = 'list'), definition = \
     e2[[i]] <- NULL
   }
   
-  ifelse(
-    test = is(e1, 'recipe'), 
-    yes = 'recipe', 
-    no = 'ingredient'
-  ) |>
+  #ifelse(
+  #  test = is(e1, 'recipe'), 
+  #  yes = 'recipe', 
+  #  no = 'ingredient'
+  #) |>
     do.call(
-      what = _,
+      what = 'ingredient',
       args = c(atr, e2)
     )
 
@@ -172,7 +193,7 @@ setMethod(f = '+', signature = c(e1 = 'ingredient', e2 = 'list'), definition = \
 
 
 #' @rdname Arith
-#' @aliases -,raw,list-method
+#' @aliases -,ingredient,list-method
 #' @export
 setMethod(f = '-', signature = c(e1 = 'ingredient', e2 = 'list'), definition = \(e1, e2) {
   # negate

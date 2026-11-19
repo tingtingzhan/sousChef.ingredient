@@ -5,13 +5,13 @@
 \alias{*,ingredient,numeric-method}
 \alias{*,numeric,ingredient-method}
 \alias{/,ingredient,numeric-method}
+\alias{-,ingredient,missing-method}
 \alias{+,ingredient,ingredient-method}
 \alias{-,ingredient,ingredient-method}
 \alias{-,ingredient,character-method}
 \alias{-,ingredient,nutrition-method}
 \alias{+,ingredient,list-method}
 \alias{-,ingredient,list-method}
-\alias{-,raw,list-method}
 \title{\link[methods]{Arith} Methods of \linkS4class{ingredient}}
 \usage{
 \S4method{*}{ingredient,numeric}(e1, e2)
@@ -19,6 +19,8 @@
 \S4method{*}{numeric,ingredient}(e1, e2)
 
 \S4method{/}{ingredient,numeric}(e1, e2)
+
+\S4method{-}{ingredient,missing}(e1, e2)
 
 \S4method{+}{ingredient,ingredient}(e1, e2)
 
