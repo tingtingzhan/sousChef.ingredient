@@ -1,10 +1,15 @@
 
-setGeneric(name = '%in%', 
-           where = asNamespace('sousChef.ingredient'),
-           useAsDefault = base::`%in%`)
-setGeneric(name = '%notin%', 
-           where = asNamespace('sousChef.ingredient'),
-           useAsDefault = base::`%notin%`)
+setGeneric(
+  name = '%in%', 
+  where = asNamespace('sousChef.ingredient'),
+  useAsDefault = base::`%in%`
+)
+
+setGeneric(
+  name = '%notin%', 
+  where = asNamespace('sousChef.ingredient'),
+  useAsDefault = base::`%notin%`
+)
 
 
 
