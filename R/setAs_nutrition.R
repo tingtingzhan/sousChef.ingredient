@@ -35,6 +35,7 @@ setAs(from = 'ingredient', to = 'nutrition', def = \(from) {
     addedSugar = max(0, z['addedSugar']) |> unname(),
     alcohol = z['alcohol'] |> unname(),
     sodium = z['sodium'] |> unname(),
+    chloride = z['chloride'] |> unname(),
     fat = z['fat'] |> unname(),
     cholesterol = z['cholesterol'] |> unname(),
     protein = z['protein'] |> unname(),
