@@ -23,7 +23,7 @@ summary.ingredient <- \(object, ...) {
     addedWater = x@water |> sum(),
     # addedSugar = x['_sugar$'] |> sum(), # wrong!! `'_sugar$'` is **not** always 100% sugar
     yeast = x['_yeast$'] |> sum(),
-    salt = x['_salt$'] |> sum(), # e.g., salt-2-flour, salt-2-yeast
+    #salt = x['_salt$'] |> sum(), # e.g., chloride-2-flour, sodium/chloride-2-yeast
     NaHCO3 = x['_NaHCO3$'] |> sum(),
     Na2CO3 = x['^NaHCO3$'] |> sum(), # exact match!!
     bakingPowder = x['_bakingPowder$'] |> sum(),
