@@ -99,7 +99,8 @@ mergePc <- \(x, ...) {
   if (!length(v)) return(x)
   
   pieceGram <- names(v) |>
-    lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition')) |>
+    #lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition')) |>
+    lapply(FUN = as, Class = 'nutrition') |>
     vapply(FUN = slot, name = 'pieceGram', FUN.VALUE = NA_real_, USE.NAMES = TRUE)
   
   z <- sum_by_name(
@@ -193,7 +194,8 @@ prt_vol <- \(x) {
     names()
   
   ingredient <- nm |>
-    lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition'))
+    #lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition'))
+    lapply(FUN = as, Class = 'nutrition')
   
   id <- ingredient |>
     vapply(FUN = \(i) {
@@ -260,7 +262,8 @@ gram2pc <- \(x) {
     vapply(FUN = exists_, where = asNamespace('sousChef.nutrition'), inherits = FALSE, FUN.VALUE = NA)
   
   v_pc <- names(x)[id_pc] |>
-    lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition'))
+    #lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition'))
+    lapply(FUN = as, Class = 'nutrition')
   
   pieceGram <- v_pc |> 
     vapply(FUN = slot, name = 'pieceGram', FUN.VALUE = NA_real_)
@@ -290,7 +293,7 @@ gram_per_tsp <- \(x) {
     vapply(FUN = \(i) {
       #v <- eval(call(name = i)) |> # still works
       v <- i |> 
-        eval_(envir = asNamespace('sousChef.nutrition')) |>
+        #eval_(envir = asNamespace('sousChef.nutrition')) |>
         as(Class = 'nutrition')
       if (!is(v, 'nutrition')) {
         stop(sQuote(i), ' cannot be converted to `nutrition`')
