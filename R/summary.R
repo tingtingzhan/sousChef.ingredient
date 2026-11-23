@@ -66,7 +66,7 @@ summary.ingredient <- \(object, ...) {
       as.double(
         # sousChef.nutrition:::as.double.nutrition
         incl_calorie = FALSE, 
-        #incl_usd = FALSE, 
+        incl_usd = FALSE, 
         incl_water = FALSE, # **not** x_nutri@water
         incl_carbohydrate = FALSE, 
         rel = FALSE
