@@ -17,7 +17,9 @@ setAs(from = 'ingredient', to = 'nutrition', def = \(from) {
   
   info <- z |>
     do.call(what = 'nutritionlist', args = _) |>
-    as.matrix(incl_usd = TRUE, incl_calorie = TRUE, rel = TRUE) # sousChef.nutrition:::as.matrix.nutritionlist
+    as.matrix(
+      #incl_usd = TRUE, 
+      incl_calorie = TRUE, rel = TRUE) # sousChef.nutrition:::as.matrix.nutritionlist
   
   z <- crossprod(grams, info)[1, , drop = TRUE]
   
