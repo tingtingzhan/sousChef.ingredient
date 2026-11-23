@@ -8,7 +8,6 @@ setAs(from = 'ingredient', to = 'nutrition', def = \(from) {
   z <- grams |>
     names() |> 
     setNames(nm = _) |>
-    #lapply(FUN = eval_, envir = asNamespace('sousChef.nutrition'))
     lapply(FUN = as, Class = 'nutrition')
   
   date <- z |> 
