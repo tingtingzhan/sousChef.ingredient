@@ -10,6 +10,11 @@ Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.6)
 Imports: methods, cli (== 3.6.6), generics (== 0.1.4), consec, equiv4, sousChef.utils, sousChef.nutrition
+Remotes:
+  tingtingzhan/consec,
+  tingtingzhan/equiv4,
+  tingtingzhan/sousChef.utils,
+  tingtingzhan/sousChef.nutrition
 Config/roxygen2/version: 8.1.1
 Config/roxygen2/markdown: TRUE
 Suggests: testthat (>= 3.0.0)
