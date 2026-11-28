@@ -221,7 +221,7 @@ fmt_vol_H2O <- \(x) {
   nx <- length(x)
   if (!nx) return(character())
   (x / 4.92892) |> # ml -> tsp
-    cmod(e1 = _, e2 = consec::teaspoon, n = 3L, tol = 1e-6) |>
+    cmod(e1 = _, e2 = consec:::teaspoon, n = 3L, tol = 1e-6) |>
     col_br_blue() |> 
     style_bold()
 }
@@ -240,9 +240,9 @@ gram2vol <- \(x, nm = names(x)) {
   
   z <- character(length = nx)
   z[id] <- x1[id] |>
-    cmod(e1 = _, e2 = consec::teaspoon2, n = 3L, tol = 1e-6)
+    cmod(e1 = _, e2 = consec:::teaspoon2, n = 3L, tol = 1e-6)
   z[!id] <- x1[!id] |>
-    cmod(e1 = _, e2 = consec::teaspoon, n = 3L, tol = 1e-6) 
+    cmod(e1 = _, e2 = consec:::teaspoon, n = 3L, tol = 1e-6) 
   
   z |>
     col_br_blue() |> 
